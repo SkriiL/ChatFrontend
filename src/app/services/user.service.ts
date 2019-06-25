@@ -27,7 +27,7 @@ export class UserService {
 
   create(username: string, email: string, password: string) {
     const str = username + ';' + email + ';' + password;
-    this.socket.sendRequest('createUser', str);
+    this.socket.sendRequest('create-user', str);
   }
 
   constructor(private socket: SocketService) {

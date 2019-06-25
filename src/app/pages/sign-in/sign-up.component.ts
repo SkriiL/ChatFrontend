@@ -19,7 +19,7 @@ import {Router} from '@angular/router';
           <label for="password">Password</label>
           <input type="text" class="form-control" id="password" name="password" [(ngModel)]="password">
         </div>
-        <button class="btn btn-outline-primary w-100 mt-2">Sign Up</button>
+        <button class="btn btn-outline-primary w-100 mt-2" (click)="signUp()">Sign Up</button>
         <span class="mt-2">
           Already have an acccount? <a (click)="signIn()" class="text-primary">Sign In</a>
         </span>
