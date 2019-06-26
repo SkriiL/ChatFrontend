@@ -8,11 +8,16 @@ import {NavbarComponent} from './components/navbar/navbar.component';
 import {SignInComponent} from './pages/sign-in/sign-in.component';
 import {SignUpComponent} from './pages/sign-in/sign-up.component';
 import {UserService} from './services/user.service';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ToastrModule} from 'ngx-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { VerifyComponent } from './components/verify/verify.component';
 import { HomeComponent } from './pages/home/home.component';
+import { FriendsComponent } from './pages/friends/friends.component';
+import {FriendsService} from './services/friends.service';
+import {TypeaheadModule} from 'ngx-type-ahead';
+import {FriendRequestsService} from './services/friend-requests.service';
+import { FriendRequestsComponent } from './pages/friend-requests/friend-requests.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +27,8 @@ import { HomeComponent } from './pages/home/home.component';
     SignUpComponent,
     VerifyComponent,
     HomeComponent,
+    FriendsComponent,
+    FriendRequestsComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,11 +37,15 @@ import { HomeComponent } from './pages/home/home.component';
     FormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    TypeaheadModule,
+    ReactiveFormsModule,
   ],
   providers: [
     UserService,
+    FriendsService,
+    FriendRequestsService,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {
 }

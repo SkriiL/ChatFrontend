@@ -24,6 +24,28 @@ export class UserService {
     });
   }
 
+  getAll(): Observable<User[]> {
+    this.socket.sendRequest('get-all-users', '');
+    return new Observable<User[]>(observer => {
+      const sub = this.socket.onEvent('all-users').subscribe(res => {
+        if (res) {
+          observer.next(res);
+          sub.unsubscribe();
+        }
+      });
+    });
+  }
+
+  getSingleById(id: number): Observable<User> {
+    this.socket.sendRequest('get-user-by-id', id.toString());
+    return new Observable<User>(observer => {
+      const sub = this.socket.onEvent('single-user').subscribe(u => {
+        observer.next(u);
+        sub.unsubscribe();
+      });
+    });
+  }
+
   signIn(username: string, password: string): Observable<User | undefined> {
     const str = username + ';' + password;
     this.socket.sendRequest('sign-in', str);

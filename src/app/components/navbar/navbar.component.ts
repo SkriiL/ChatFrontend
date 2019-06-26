@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from '../../services/user.service';
 import {ToastrService} from 'ngx-toastr';
+import {FriendsService} from '../../services/friends.service';
+import {FriendRequestsService} from '../../services/friend-requests.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -9,9 +12,26 @@ import {ToastrService} from 'ngx-toastr';
 export class NavbarComponent implements OnInit {
   public currentId = UserService.currentId;
 
+  public requestClass = 'nav-link text-light';
+
   constructor(
     private toastr: ToastrService,
+    private friendsService: FriendsService,
+    private friendRequestsService: FriendRequestsService,
+    private router: Router,
   ) {
+    this.friendRequestsService.newFriendRequest().subscribe(id => {
+      if (id === this.currentId.getValue()) {
+        this.toastr.info('You got a new friend request.');
+        this.requestClass = 'nav-link text-primary';
+      }
+    });
+    this.friendRequestsService.getAllForUser(this.currentId.getValue()).subscribe(fr => {
+      if (fr && fr.length > 0) {
+        this.requestClass = 'nav-link text-primary';
+      }
+    });
+
   }
 
   ngOnInit() {
@@ -21,7 +41,9 @@ export class NavbarComponent implements OnInit {
     localStorage.clear();
     sessionStorage.clear();
     UserService.currentId.next(-1);
-    this.toastr.success('Signed out.')
+    this.requestClass = 'nav-link text-light';
+    this.toastr.success('Signed out.');
+    this.router.navigate(['/']);
   }
 
 }

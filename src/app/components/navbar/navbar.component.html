@@ -5,10 +5,15 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul *ngIf="(currentId | async) != -1" class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link text-light" routerLink="friends">Friends</a>
+        </li>
+      </ul>
       <ul class="navbar-nav ml-auto">
-        <!--<li class="nav-item">
-          <a class="nav-link text-light">Informationen</a>
-        </li>-->
+        <li *ngIf="(currentId | async) != -1" class="nav-item mr-3">
+          <a [class]="requestClass" routerLink="friend-requests"><i class="fa fa-users"></i></a>
+        </li>
         <li class="nav-item">
           <button *ngIf="(currentId | async) == -1" class="btn btn-outline-light" routerLink="sign-in">
             Sign In <i class="fa fa-sign-in"></i>

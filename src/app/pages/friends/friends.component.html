@@ -1,0 +1,39 @@
+<div class="container-fluid mt-3">
+  <table class="table table-dark">
+    <thead>
+      <tr>
+        <th scope="col">Username</th>
+        <th scope="col">E-Mail</th>
+        <th scope="col">
+          <div [formGroup]="formGroup">
+            <type-ahead formControlName="selectedUserId" class="form-control" [suggestions]="users$ | async"
+                        [complex]="true" [nameField]="'username'" [idField]="'id'" placeholder="Search for user"
+                        [settings]="typeaheadSettings">
+            </type-ahead>
+          </div>
+        </th>
+        <th scope="col">
+          <button class="btn btn-outline-primary" (click)="addFriend()">Add friend</button>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let friend of friends$ | async">
+        <td *ngIf="friend.user2.id == currentId">{{ friend.user1.username }}</td>
+        <td *ngIf="friend.user2.id == currentId">{{ friend.user1.email }}</td>
+        <td *ngIf="friend.user1.id == currentId">{{ friend.user2.username }}</td>
+        <td *ngIf="friend.user1.id == currentId">{{ friend.user2.email }}</td>
+        <td>
+          <button class="btn btn-outline-primary btn-sm">
+            Send message
+          </button>
+        </td>
+        <td>
+          <button class="btn btn-outline-danger btn-sm" (click)="removeFriend(friend)">
+            Remove friend
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
