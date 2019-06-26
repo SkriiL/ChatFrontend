@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import * as socketIo from 'socket.io-client';
-import {Observable} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SocketService {
+  public static sid = new BehaviorSubject('');
   private socket;
 
   initSocket() {
@@ -13,7 +14,7 @@ export class SocketService {
   }
 
   public sendRequest(event: string, args: string) {
-    this.socket.emit(event, args);
+    this.socket.emit(event, args, SocketService.sid);
   }
 
   public onEvent(event: string): Observable<any> {
