@@ -15,7 +15,7 @@ import {User} from '../../models/user';
         </div>
         <div class="form-group">
           <label for="password">Password</label>
-          <input type="text" class="form-control" id="password" name="password" [(ngModel)]="password">
+          <input type="password" class="form-control" id="password" name="password" [(ngModel)]="password">
         </div>
         <div class="form-group">
           <input type="checkbox" class="form-check-input" id="keepIn" name="keepIn" [(ngModel)]="keepIn">
@@ -54,7 +54,7 @@ export class SignInComponent implements OnInit {
             sessionStorage.setItem('id', user.id.toString());
           }
           this.toastr.success('Signed in!');
-          this.router.navigate(['/']);
+          this.router.navigate(['/home']);
         } else {
           this.toastr.error('Wrong username or password!');
         }

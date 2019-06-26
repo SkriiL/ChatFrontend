@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { SocketService } from './socket.service';
+import {Injectable} from '@angular/core';
+import {SocketService} from './socket.service';
 import {BehaviorSubject, Observable, of, Subject} from 'rxjs';
 import {User} from '../models/user';
 
@@ -11,9 +11,17 @@ export class UserService {
   public static currentId = localStorage.getItem('id') ? new BehaviorSubject(parseInt(localStorage.getItem('id'), 10)) :
     sessionStorage.getItem('id') ? new BehaviorSubject(parseInt(sessionStorage.getItem('id'), 10)) : new BehaviorSubject(-1);
 
-  create(username: string, email: string, password: string) {
+  create(username: string, email: string, password: string): Observable<number[]> {
     const str = username + ';' + email + ';' + password;
     this.socket.sendRequest('create-user', str);
+    return new Observable<number[]>(observer => {
+      const sub = this.socket.onEvent('created-user').subscribe((res: number[]) => {
+        if (res) {
+          observer.next(res);
+          sub.unsubscribe();
+        }
+      });
+    });
   }
 
   signIn(username: string, password: string): Observable<User | undefined> {
