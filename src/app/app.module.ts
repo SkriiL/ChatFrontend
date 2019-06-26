@@ -11,6 +11,8 @@ import {UserService} from './services/user.service';
 import {FormsModule} from '@angular/forms';
 import {ToastrModule} from 'ngx-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { VerifyComponent } from './components/verify/verify.component';
+import { HomeComponent } from './pages/home/home.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     NavbarComponent,
     SignInComponent,
     SignUpComponent,
+    VerifyComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
