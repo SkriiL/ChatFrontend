@@ -18,9 +18,12 @@ import {UserService} from '../../services/user.service';
           </ul>
           <ul class="navbar-nav ml-auto">
             <li class="nav-item" *ngIf="selectedChat">
-              <strong class="nav-link text-light">
-                {{ selectedChat.user1.id === currentId$.getValue() ? selectedChat.user2.username : selectedChat.user1.username }}
-              </strong>
+              <div class="nav-link text-light">
+                <strong>
+                  {{ selectedChat.user1.id === currentId$.getValue() ? selectedChat.user2.username : selectedChat.user1.username }}
+                </strong>
+                - {{ selectedChat.user1.id === currentId$.getValue() ? selectedChat.user2.status : selectedChat.user1.status }}
+              </div>
             </li>
           </ul>
         </div>

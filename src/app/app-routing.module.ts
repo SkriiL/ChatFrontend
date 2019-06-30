@@ -15,6 +15,7 @@ const routes: Routes = [
   {path: 'sign-up', component: SignUpComponent},
   {path: 'verify/:id', component: VerifyComponent},
   {path: 'home', component: HomeComponent},
+  {path: '', pathMatch: 'prefix', redirectTo: 'home'},
   {path: 'friends', component: FriendsComponent},
   {path: 'friend-requests', component: FriendRequestsComponent},
   {path: 'chat', component: ChatComponent},
