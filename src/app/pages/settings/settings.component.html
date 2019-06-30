@@ -1,0 +1,30 @@
+<div class="container-fluid text-center mt-3" [formGroup]="formGroup">
+  <h4>Settings</h4>
+
+  <hr>
+
+  Hier normale sachen
+
+  <hr>
+
+  <div *ngIf="userPermission$ | async">
+    <div class="row">
+      <span class="col-sm-0 col-md-3"></span>
+      <button class="btn btn-outline-dark col-sm-12 col-md-3" (click)="createInvitationLink()">
+        Create invitation link
+      </button>
+      <div class="input-group col-sm-12 col-md-3">
+        <input type="text" class="form-control" formControlName="link">
+        <div class="input-group-append">
+          <div class="input-group-text pointer" (click)="copyLink()" ngbPopover="Copy" triggers="mouseenter:mouseleave">
+            <i class="fa fa-clone"></i>
+          </div>
+        </div>
+      </div>
+      <span class="col-sm-0 col-md-3"></span>
+    </div>
+    <span class="text-small text-danger">
+      Warning: This link can be accessed one time only.
+    </span>
+  </div>
+</div>

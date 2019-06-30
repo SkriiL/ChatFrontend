@@ -11,7 +11,6 @@ import {UserService} from './services/user.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ToastrModule} from 'ngx-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { VerifyComponent } from './components/verify/verify.component';
 import { HomeComponent } from './pages/home/home.component';
 import { FriendsComponent } from './pages/friends/friends.component';
 import {FriendsService} from './services/friends.service';
@@ -27,9 +26,11 @@ import { DateFormatPipe } from './pipes/date-format.pipe';
 import { ChatWindowComponent } from './pages/chat/chat-window.component';
 import { MessageComponent } from './components/message/message.component';
 import {PerfectScrollbarModule} from 'ngx-perfect-scrollbar';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal, NgbModule, NgbPopoverModule} from '@ng-bootstrap/ng-bootstrap';
 import { StartChatModalComponent } from './components/start-chat-modal/start-chat-modal.component';
 import {ModalModule} from 'ngb-modal';
+import { SettingsComponent } from './pages/settings/settings.component';
+import { InvitationComponent } from './components/invitation/invitation.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,6 @@ import {ModalModule} from 'ngb-modal';
     NavbarComponent,
     SignInComponent,
     SignUpComponent,
-    VerifyComponent,
     HomeComponent,
     FriendsComponent,
     FriendRequestsComponent,
@@ -48,6 +48,8 @@ import {ModalModule} from 'ngb-modal';
     ChatWindowComponent,
     MessageComponent,
     StartChatModalComponent,
+    SettingsComponent,
+    InvitationComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,6 +62,8 @@ import {ModalModule} from 'ngb-modal';
     ReactiveFormsModule,
     PerfectScrollbarModule,
     ModalModule,
+    NgbPopoverModule,
+    NgbModule.forRoot(),
   ],
   providers: [
     UserService,

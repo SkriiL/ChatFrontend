@@ -53,12 +53,9 @@ export class NavbarComponent implements OnInit {
       if (permission === 'chat' && !u.permissions.chat) {
         this.toastr.error('You do not have the permissions to do that.');
         this.router.navigate(['']);
-        return sub.unsubscribe();
-      }
-      if (permission === 'friends' && !u.permissions.friends) {
+      } else if (permission === 'friends' && !u.permissions.friends) {
         this.toastr.error('You do not have the permissions to do that.');
         this.router.navigate(['']);
-        return sub.unsubscribe();
       }
       sub.unsubscribe();
     });

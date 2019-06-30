@@ -11,8 +11,8 @@ export class UserService {
   public static currentId = localStorage.getItem('id') ? new BehaviorSubject(parseInt(localStorage.getItem('id'), 10)) :
     sessionStorage.getItem('id') ? new BehaviorSubject(parseInt(sessionStorage.getItem('id'), 10)) : new BehaviorSubject(-1);
 
-  create(username: string, email: string, password: string): Observable<number[]> {
-    const str = username + ';' + email + ';' + password;
+  create(username: string, password: string): Observable<number[]> {
+    const str = username + ';' + password;
     this.socket.sendRequest('create-user', str);
     return new Observable<number[]>(observer => {
       const sub = this.socket.onEvent('created-user').subscribe((res: number[]) => {
@@ -61,8 +61,26 @@ export class UserService {
     });
   }
 
-  verifyEmail(id: number) {
-    this.socket.sendRequest('verify-email', id.toString());
+  invite(): Observable<string> {
+    this.socket.sendRequest('invite', '');
+    return new Observable<string>(observer => {
+      const sub = this.socket.onEvent('invitation').subscribe(l => {
+        if (l) {
+          observer.next(l);
+          sub.unsubscribe();
+        }
+      });
+    });
+  }
+
+  activateInvitation(id: number): Observable<boolean> {
+    this.socket.sendRequest('activate-invitation', id.toString());
+    return new Observable<boolean>(observer => {
+      const sub = this.socket.onEvent('activated-invitation').subscribe(res => {
+        observer.next(res);
+        sub.unsubscribe();
+      });
+    });
   }
 
   constructor(private socket: SocketService) {

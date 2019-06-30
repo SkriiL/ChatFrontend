@@ -9,3 +9,7 @@
 .scrollbar {
   overflow-y: scroll;
 }
+
+.pointer {
+  cursor: pointer;
+}
