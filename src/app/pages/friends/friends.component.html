@@ -24,11 +24,6 @@
         <td *ngIf="friend.user1.id == currentId">{{ friend.user2.username }}</td>
         <td *ngIf="friend.user1.id == currentId">{{ friend.user2.email }}</td>
         <td>
-          <button class="btn btn-outline-primary btn-sm">
-            Send message
-          </button>
-        </td>
-        <td>
           <button class="btn btn-outline-danger btn-sm" (click)="removeFriend(friend)">
             Remove friend
           </button>

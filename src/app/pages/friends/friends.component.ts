@@ -6,6 +6,9 @@ import {ToastrService} from 'ngx-toastr';
 import {User} from '../../models/user';
 import {FormControl, FormGroup} from '@angular/forms';
 import {FriendRequestsService} from '../../services/friend-requests.service';
+import {Router} from '@angular/router';
+import {ChatService} from '../../services/chat.service';
+import {CommonService} from '../../services/common.service';
 
 @Component({
   selector: 'app-friends',
@@ -16,17 +19,7 @@ export class FriendsComponent implements OnInit {
   public friends$ = this.friendsService.getAllForUser(UserService.currentId.getValue());
   public users$ = this.userService.getAll();
 
-  public typeaheadSettings = {
-    typeDelay: 50,
-    suggestionsLimit: 10,
-    noMatchesText: 'No matches found',
-    tagClass: 'btn badge badge-primary',
-    tagRemoveIconClass: '',
-    dropdownMenuClass: 'dropdown-menu w-100',
-    dropdownMenuExpandedClass: 'dropdown-menu show w-100',
-    dropdownMenuItemClass: 'dropdown-item',
-    dropdownToggleClass: 'dropdown-toggle',
-  };
+  public typeaheadSettings = this.commonService.typeaheadSettings;
 
 
   public formGroup = new FormGroup({
@@ -37,7 +30,10 @@ export class FriendsComponent implements OnInit {
     private friendsService: FriendsService,
     private toastr: ToastrService,
     private userService: UserService,
-    private friendRequestsService: FriendRequestsService
+    private friendRequestsService: FriendRequestsService,
+    private router: Router,
+    private chatService: ChatService,
+    private commonService: CommonService,
   ) { }
 
   ngOnInit() {

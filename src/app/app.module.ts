@@ -18,6 +18,18 @@ import {FriendsService} from './services/friends.service';
 import {TypeaheadModule} from 'ngx-type-ahead';
 import {FriendRequestsService} from './services/friend-requests.service';
 import { FriendRequestsComponent } from './pages/friend-requests/friend-requests.component';
+import { ChatComponent } from './pages/chat/chat.component';
+import {ChatService} from './services/chat.service';
+import { AllChatsComponent } from './pages/chat/all-chats.component';
+import { ChatCardComponent } from './pages/chat/chat-card.component';
+import {MessagesService} from './services/messages.service';
+import { DateFormatPipe } from './pipes/date-format.pipe';
+import { ChatWindowComponent } from './pages/chat/chat-window.component';
+import { MessageComponent } from './components/message/message.component';
+import {PerfectScrollbarModule} from 'ngx-perfect-scrollbar';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import { StartChatModalComponent } from './components/start-chat-modal/start-chat-modal.component';
+import {ModalModule} from 'ngb-modal';
 
 @NgModule({
   declarations: [
@@ -29,6 +41,13 @@ import { FriendRequestsComponent } from './pages/friend-requests/friend-requests
     HomeComponent,
     FriendsComponent,
     FriendRequestsComponent,
+    ChatComponent,
+    AllChatsComponent,
+    ChatCardComponent,
+    DateFormatPipe,
+    ChatWindowComponent,
+    MessageComponent,
+    StartChatModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,11 +58,15 @@ import { FriendRequestsComponent } from './pages/friend-requests/friend-requests
     ToastrModule.forRoot(),
     TypeaheadModule,
     ReactiveFormsModule,
+    PerfectScrollbarModule,
+    ModalModule,
   ],
   providers: [
     UserService,
     FriendsService,
     FriendRequestsService,
+    ChatService,
+    MessagesService,
   ],
   bootstrap: [AppComponent],
 })

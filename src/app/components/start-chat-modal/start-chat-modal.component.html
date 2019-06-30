@@ -1,0 +1,22 @@
+<modal #startChatModal>
+  <modal-header>
+    Start a chat
+  </modal-header>
+
+  <modal-content>
+    <div [formGroup]="formGroup">
+      <type-ahead formControlName="selectedUserId" class="form-control" [suggestions]="users$ | async"
+                  [complex]="true" [nameField]="'username'" [idField]="'id'" placeholder="Search for friend"
+                  [settings]="typeaheadSettings" required>
+      </type-ahead>
+      <textarea class="form-control mt-2" formControlName="content" required></textarea>
+    </div>
+  </modal-content>
+
+  <modal-footer>
+    <button class="btn btn-outline-danger mr-3" (click)="closeModal()">Dismiss</button>
+    <button class="btn btn-outline-primary" (click)="sendMessage()">Send</button>
+  </modal-footer>
+</modal>
+
+<a class="nav-link text-light" (click)="openModal(startChatModal)"><i class="fa fa-envelope"></i></a>

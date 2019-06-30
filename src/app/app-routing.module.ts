@@ -8,6 +8,7 @@ import {HomeComponent} from './pages/home/home.component';
 import {FriendsComponent} from './pages/friends/friends.component';
 import {FriendRequestsService} from './services/friend-requests.service';
 import {FriendRequestsComponent} from './pages/friend-requests/friend-requests.component';
+import {ChatComponent} from './pages/chat/chat.component';
 
 const routes: Routes = [
   {path: 'sign-in', component: SignInComponent},
@@ -16,6 +17,8 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'friends', component: FriendsComponent},
   {path: 'friend-requests', component: FriendRequestsComponent},
+  {path: 'chat', component: ChatComponent},
+  {path: 'chat/:id', component: ChatComponent},
 ];
 
 @NgModule({

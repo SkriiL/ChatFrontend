@@ -27,10 +27,13 @@
     "core-js": "^2.5.4",
     "font-awesome": "^4.7.0",
     "jquery": "^3.4.1",
+    "ngb-modal": "^2.0.3",
+    "ngx-perfect-scrollbar": "^8.0.0",
     "ngx-toastr": "^10.0.4",
     "ngx-type-ahead": "^2.0.1",
     "rxjs": "^6.0.0",
     "rxjs-compat": "^6.5.2",
+    "simplebar": "^4.0.0",
     "socket.io-client": "^2.2.0",
     "zone.js": "~0.8.26"
   },

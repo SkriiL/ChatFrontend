@@ -1,2 +1,11 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import '~ngx-toastr/toastr.css';
+
+.text-small {
+  font-weight: lighter;
+  font-size: small;
+}
+
+.scrollbar {
+  overflow-y: scroll;
+}
