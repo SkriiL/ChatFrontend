@@ -35,8 +35,6 @@ export class ChatCardComponent implements OnInit {
     this.chat = value;
     this.messagesService.messagesForChats$.subscribe(mcs => {
       if (mcs.length > 0) {
-        console.log(value.id);
-        console.log(mcs);
         this.messages$ = mcs.find(mc => mc.chatId === value.id) ? mcs.find(mc => mc.chatId === value.id).messages$ : undefined;
       }
     });

@@ -1,9 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewChecked, Component, OnChanges, OnInit} from '@angular/core';
 import {Chat} from '../../models/chat';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {ChatService} from '../../services/chat.service';
 import {Observable, of} from 'rxjs';
 import {UserService} from '../../services/user.service';
+import {User} from '../../models/user';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-chat',
@@ -49,6 +51,9 @@ export class ChatComponent implements OnInit {
   }
 
   constructor(
+    private userService: UserService,
+    private toastr: ToastrService,
+    private router: Router,
   ) {
   }
 

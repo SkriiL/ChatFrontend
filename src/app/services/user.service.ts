@@ -41,6 +41,7 @@ export class UserService {
     return new Observable<User>(observer => {
       const sub = this.socket.onEvent('single-user').subscribe(u => {
         observer.next(u);
+        console.log(u);
         sub.unsubscribe();
       });
     });

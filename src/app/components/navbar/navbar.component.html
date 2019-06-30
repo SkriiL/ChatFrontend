@@ -5,23 +5,25 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul *ngIf="(currentId | async) != -1" class="navbar-nav mr-auto">
+      <ul *ngIf="(currentId$ | async) != -1" class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link text-light" routerLink="friends">Friends</a>
+          <a class="nav-link text-light" routerLink="friends" (click)="checkPermissions('friends')">Friends</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-light" routerLink="chat">Chat</a>
+          <a class="nav-link text-light" routerLink="chat" (click)="checkPermissions('chat')">Chat</a>
         </li>
       </ul>
       <ul class="navbar-nav ml-auto">
-        <li *ngIf="(currentId | async) != -1" class="nav-item mr-3">
-          <a [class]="requestClass" routerLink="friend-requests"><i class="fa fa-users"></i></a>
+        <li *ngIf="(currentId$ | async) != -1" class="nav-item mr-3">
+          <a [class]="requestClass" routerLink="friend-requests" (click)="checkPermissions('friends')">
+            <i class="fa fa-users"></i>
+          </a>
         </li>
         <li class="nav-item">
-          <button *ngIf="(currentId | async) == -1" class="btn btn-outline-light" routerLink="sign-in">
+          <button *ngIf="(currentId$ | async) == -1" class="btn btn-outline-light" routerLink="sign-in">
             Sign In <i class="fa fa-sign-in"></i>
           </button>
-          <button *ngIf="(currentId | async) != -1" class="btn btn-outline-light" (click)="signOut()">
+          <button *ngIf="(currentId$ | async) != -1" class="btn btn-outline-light" (click)="signOut()">
             <i class="fa fa-sign-out"></i>Sign Out
           </button>
         </li>
