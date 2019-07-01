@@ -21,9 +21,13 @@ import {PerfectScrollbarComponent, PerfectScrollbarDirective} from 'ngx-perfect-
           </div>
         </div>
       </div>
-      <div class="row mb-3" [formGroup]="formGroup">
-        <input formControlName="content" class="form-control col-9">
-        <button class="btn btn-outline-light col-3" (click)="sendMessage()">Send</button>
+      <div class="input-group mb-3">
+        <input class="form-control" placeholder=". . ." formControlName="content">
+        <div class="input-group-append">
+          <div class="input-group-text pointer" (click)="sendMessage()">
+            Send
+          </div>
+        </div>
       </div>
     </div>
   `,

@@ -24,6 +24,11 @@ export class UserService {
     });
   }
 
+  edit(user: User) {
+    const str = user.id + ';' + user.username + ';' + user.password + ';' + user.status + ';' + user.permissions.id;
+    this.socket.sendRequest('edit-user', str);
+  }
+
   getAll(): Observable<User[]> {
     this.socket.sendRequest('get-all-users', '');
     return new Observable<User[]>(observer => {
@@ -41,7 +46,6 @@ export class UserService {
     return new Observable<User>(observer => {
       const sub = this.socket.onEvent('single-user').subscribe(u => {
         observer.next(u);
-        console.log(u);
         sub.unsubscribe();
       });
     });

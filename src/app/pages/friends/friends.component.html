@@ -3,7 +3,7 @@
     <thead>
       <tr>
         <th scope="col">Username</th>
-        <th scope="col">E-Mail</th>
+        <th scope="col">Permissions</th>
         <th scope="col">
           <div [formGroup]="formGroup">
             <type-ahead formControlName="selectedUserId" class="form-control" [suggestions]="users$ | async"
@@ -20,9 +20,9 @@
     <tbody>
       <tr *ngFor="let friend of friends$ | async">
         <td *ngIf="friend.user2.id == currentId">{{ friend.user1.username }}</td>
-        <td *ngIf="friend.user2.id == currentId">{{ friend.user1.email }}</td>
+        <td *ngIf="friend.user2.id == currentId">{{ friend.user1.permissions.name }}</td>
         <td *ngIf="friend.user1.id == currentId">{{ friend.user2.username }}</td>
-        <td *ngIf="friend.user1.id == currentId">{{ friend.user2.email }}</td>
+        <td *ngIf="friend.user1.id == currentId">{{ friend.user2.permissions.name }}</td>
         <td>
           <button class="btn btn-outline-danger btn-sm" (click)="removeFriend(friend)">
             Remove friend
